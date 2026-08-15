@@ -1,0 +1,26 @@
+/* Cover letter stylesheet for md-to-pdf — simple business-letter look,
+   consistent name/brand color with templates/cv.css.
+   Usage: npx md-to-pdf some-cover-letter.md --stylesheet templates/cover-letter.css
+*/
+
+body {
+  font-family: -apple-system, "Helvetica Neue", Arial, sans-serif !important;
+  font-size: 11pt !important;
+  line-height: 1.5 !important;
+  color: #1a1a1a !important;
+  max-width: 680px;
+  margin: 0 auto !important;
+  padding: 48px 40px !important;
+}
+
+p {
+  margin: 0 0 14px !important;
+}
+
+a {
+  color: #1155cc;
+}
+
+strong {
+  font-weight: 700;
+}

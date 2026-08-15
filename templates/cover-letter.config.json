@@ -1,0 +1,8 @@
+{
+  "stylesheet": ["templates/cover-letter.css"],
+  "pdf_options": {
+    "format": "A4",
+    "margin": "15mm",
+    "printBackground": true
+  }
+}

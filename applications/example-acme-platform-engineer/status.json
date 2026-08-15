@@ -1,0 +1,11 @@
+{
+  "id": "firecrawl:Acme Example Co:example0001",
+  "company": "Acme Example Co",
+  "title": "Platform Engineer",
+  "location": "Remote (US)",
+  "url": "https://acme-example-co.test/careers/platform-engineer",
+  "source": "firecrawl",
+  "foundAt": "2026-01-15T08:00:00.000Z",
+  "status": "cover_letter_drafted",
+  "statusUpdatedAt": "2026-01-15T09:30:00.000Z"
+}

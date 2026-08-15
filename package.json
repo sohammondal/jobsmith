@@ -1,0 +1,12 @@
+{
+  "name": "jobsmith",
+  "version": "0.1.0",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "description": "Scans target companies' job boards (Greenhouse/Lever/Ashby, or custom career pages via Firecrawl) for roles matching your keywords, then helps generate a tailored CV and cover letter for each match.",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.23.0"
+  }
+}
