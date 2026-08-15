@@ -9,6 +9,52 @@ Works for any engineer — backend, frontend, mobile, DevOps, junior or
 senior. Nothing in here is tied to a particular stack; you edit a plain
 keyword list and your own profile to point it at your own search.
 
+## How it works
+
+Two ways a job enters the pipeline — an automated scan (Greenhouse/Lever/
+Ashby/custom-ATS/HN Jobs) or a manual paste from a site jobsmith can't scan
+(LinkedIn, Indeed, anything behind a login) — and both converge on the same
+CV/cover-letter generation step, ending in PDFs you review and submit
+yourself:
+
+```mermaid
+flowchart TD
+    CJ["companies.json<br/>your target companies"] --> RA["resolve-ats.mjs<br/>probes Greenhouse / Lever / Ashby"]
+
+    subgraph AUTO["Automated scan — e.g. Lever / Ashby"]
+        direction TB
+        RA --> SJ["scan.mjs<br/>fetch jobs, filter by KEYWORD_LIST"]
+        SJ --> NM["new-matches.log.tsv<br/>title · location · url"]
+    end
+
+    subgraph MANUAL["Manual match — e.g. LinkedIn"]
+        direction TB
+        LI["Browse LinkedIn<br/>(or any site jobsmith can't scan)"] --> PASTE["Paste full posting + URL<br/>to your AI assistant"]
+        PASTE --> MM["workflows/manual-match.md"]
+    end
+
+    NM --> PA["workflows/prepare-application.md<br/>fetch full posting via the ATS's JSON API"]
+    PA --> FOLDER["applications/{slug}/<br/>posting.md + status.json"]
+    MM --> FOLDER
+
+    FOLDER --> GA["workflows/generate-application.md"]
+    PROFILE["profile/<br/>cv-template.md · resume.md · work-log.md"] --> GA
+
+    GA --> DRAFTS["applications/{slug}/<br/>cv.md + cover-letter.md"]
+    DRAFTS --> RP["render-pdfs.mjs"]
+    RP --> PDFS["applications/{slug}/<br/>cv.pdf + cover-letter.pdf"]
+
+    PDFS --> APPLY(["Apply manually<br/>upload cv.pdf / cover-letter.pdf on the company's site"])
+
+    style APPLY fill:#1155cc,color:#fff,stroke:#1155cc
+    style PDFS fill:#e8f0fe,stroke:#1155cc,color:#1a1a1a
+```
+
+`cv.pdf` and `cover-letter.pdf` in each `applications/{slug}/` folder are
+the final output — real text-layer PDFs, ATS-friendly, ready to attach or
+paste into the company's own application form. jobsmith stops there on
+purpose; see [What this deliberately doesn't do](#what-this-deliberately-doesnt-do-yet).
+
 ## Getting started
 
 1. **Clone and install:**
